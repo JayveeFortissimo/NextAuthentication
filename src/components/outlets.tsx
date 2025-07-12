@@ -5,9 +5,8 @@ interface ChildProps {
 const Outlets: React.FC<ChildProps> = ({ children }) => {
   return (
     <div>
-      <header></header>
-
-      <section>{children}</section>
+    
+      {children}
 
       <footer></footer>
     </div>

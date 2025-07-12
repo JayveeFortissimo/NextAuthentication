@@ -45,25 +45,27 @@ const SignIn = () => {
 
   async function onSubmit(values: z.infer<typeof signInFromSchema>) {
     const { email, password } = values;
-    const { data, error } = await authClient.signIn.email({
-      email,
-      password,
-      callbackURL:'/auth/signUp'
-    }, {
-            onRequest: (ctx) => {
-              /// lay loading
-              toast.success("Looding.............");
-            },
-            onSuccess: (ctx) => {
-              // redirection
-              toast.success("Login Successfully")
-              form.reset();
-            },
-            onError: (ctx) => {
-              alert(ctx.error.message);
-            },
-          });
-
+    const { data, error } = await authClient.signIn.email(
+      {
+        email,
+        password,
+        callbackURL: "/profile",
+      },
+      {
+        onRequest: (ctx) => {
+          /// lay loading
+          toast.success("Looding.............");
+        },
+        onSuccess: (ctx) => {
+          // redirection
+          toast.success("Login Successfully");
+          form.reset();
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      }
+    );
   }
 
   return (
